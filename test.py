@@ -4,7 +4,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome import service as fs
 #import chromedriver_binary
 import json
-import chardet
 # -*- coding: utf-8 -*-
 
 
