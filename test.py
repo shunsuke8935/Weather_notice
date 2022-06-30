@@ -91,7 +91,8 @@ def Selenium():
         )
 
         return result_str
-    except:
+    except Exception as e:
+        print(e)
         print(temparcher + "度の服装")
         driver.quit()
         return "CAN NOT SEARCH ON GOOGLE"
