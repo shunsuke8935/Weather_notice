@@ -68,15 +68,15 @@ def Selenium():
 
         print("check1")
         driver.get('https://www.google.com/')
-        time.sleep(3)
+        time.sleep(7)
         search_box = driver.find_element(By.NAME, "q")
         print(search_box)
-        time.sleep(3)
+        time.sleep(7)
         search_box.send_keys(temparcher + "度の服装")
         print("check2")
         search_box.submit()
         # search_box.send_keys(Keys.ENTER)
-        time.sleep(3)
+        time.sleep(7)
         print("check2.5")
         # //*[@id="rso"]/div[1]/div/div[1]/div/a
         res = driver.find_element(
@@ -86,9 +86,9 @@ def Selenium():
 
         result_link = result[1]
 
-        time.sleep(5)
+        time.sleep(7)
         result_link.click()
-        time.sleep(5)
+        time.sleep(7)
         url = driver.current_url
 
         result_str = """
