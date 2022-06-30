@@ -5,6 +5,7 @@ from selenium.webdriver.chrome import service as fs
 #import chromedriver_binary
 import json
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 # -*- coding: utf-8 -*-
 
 
@@ -69,7 +70,7 @@ def Selenium():
         print("check1")
         driver.get('https://www.google.com/')
         time.sleep(10)
-        search_box = driver.find_element(By.NAME, "q")
+        search_box = driver.find_element(By.ID, "input")
         search_box.click()
         time.sleep(10)
         search_box.send_keys(temparcher + "度の服装")
