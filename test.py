@@ -85,7 +85,7 @@ def Selenium():
         res = driver.find_element(
             By.ID, "rso")
         print("check3")
-        result = res.find_elements(By.TAG_NAME, "a")
+        result = res.find_element(By.TAG_NAME, "a")
 
         result_link = result[1]
 
