@@ -68,6 +68,7 @@ def Selenium():
 
         print("check1")
         driver.get('https://www.google.com/')
+        time.sleep(10)
         search_box = driver.find_element(By.NAME, "q")
         search_box.click()
         time.sleep(10)
