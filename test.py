@@ -72,11 +72,14 @@ def Selenium():
         time.sleep(10)
         search_box = driver.find_element(By.NAME, "q")
         print(search_box)
-        search_box.send_keys(Keys.ENTER)
         time.sleep(10)
         search_box.send_keys(temparcher + "度の服装")
+        print("check2")
         search_box.submit()
+        # search_box.send_keys(Keys.ENTER)
+        time.sleep("check2.5")
         result = driver.find_element(By.CSS_SELECTOR, "div.tF2Cxc a")
+        print("check3")
         result_link = result[0]
 
         time.sleep(5)
@@ -96,7 +99,6 @@ def Selenium():
         return result_str
     except Exception as e:
         print(e)
-        print(temparcher + "度の服装")
         driver.quit()
         return "CAN NOT SEARCH ON GOOGLE"
 
