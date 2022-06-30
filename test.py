@@ -34,7 +34,8 @@ def Selenium():
     driver_path = '/app/.chromedriver/bin/chromedriver'
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
-    options.add_argument('--lang=ja-JP')
+    options.add_argument('--no-sandbox')
+    options.add_argument("--disable-dev-shm-usage")
     # driverに設定 ※optionsを指定しないとheadlessにならないので注意
     driver = webdriver.Chrome(options=options)
 
@@ -56,10 +57,15 @@ def Selenium():
             ' ': '',
             '\t': ''
         })
+    except:
+        return "CAN NOT GET API RESPONCE"
+
+    try:
         weather_info = weather_info.translate(table)
         driver = webdriver.Chrome()
         print("気温: {temparcher}".format(temparcher=temparcher))
 
+        print("check1")
         driver.get('https://www.google.com/')
         search_box = driver.find_element_by_name("q")
         search_box.click()
