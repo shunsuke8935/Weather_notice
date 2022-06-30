@@ -2,7 +2,7 @@ import requests
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome import service as fs
-#import chromedriver_binary
+# import chromedriver_binary
 import json
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -41,8 +41,7 @@ def Selenium():
     # driverに設定 ※optionsを指定しないとheadlessにならないので注意
     driver = webdriver.Chrome(options=options)
 
-    # chrome_service = fs.Service(
-    #     executable_path='/Users/shunsukegoto/Desktop/DEVELOP/Weather_notice/chromedriver')
+    # driver = webdriver.Chrome()
 
     # 気温取得
     try:
@@ -69,19 +68,23 @@ def Selenium():
 
         print("check1")
         driver.get('https://www.google.com/')
-        time.sleep(10)
+        time.sleep(3)
         search_box = driver.find_element(By.NAME, "q")
         print(search_box)
-        time.sleep(10)
+        time.sleep(3)
         search_box.send_keys(temparcher + "度の服装")
         print("check2")
         search_box.submit()
         # search_box.send_keys(Keys.ENTER)
-        time.sleep(5)
+        time.sleep(3)
         print("check2.5")
-        result = driver.find_element(By.CSS_SELECTOR, "div.tF2Cxc a")
+        # //*[@id="rso"]/div[1]/div/div[1]/div/a
+        res = driver.find_element(
+            By.ID, "rso")
         print("check3")
-        result_link = result[0]
+        result = res.find_elements(By.TAG_NAME, "a")
+
+        result_link = result[1]
 
         time.sleep(5)
         result_link.click()
