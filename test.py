@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome import service as fs
 #import chromedriver_binary
 import json
+from selenium.webdriver.common.by import By
 # -*- coding: utf-8 -*-
 
 
@@ -67,12 +68,12 @@ def Selenium():
 
         print("check1")
         driver.get('https://www.google.com/')
-        search_box = driver.find_element_by_name("q")
+        search_box = driver.find_element(By.NAME, "q")
         search_box.click()
         time.sleep(10)
         search_box.send_keys(temparcher + "度の服装")
         search_box.submit()
-        result = driver.find_elements_by_css_selector("div.tF2Cxc a")
+        result = driver.find_element(By.CSS_SELECTOR, "div.tF2Cxc a")
         result_link = result[0]
 
         time.sleep(5)
