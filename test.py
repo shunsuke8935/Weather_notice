@@ -42,7 +42,7 @@ def Selenium():
     options.add_argument('--remote-debugging-port=9222')
     # driverに設定 ※optionsを指定しないとheadlessにならないので注意
     driver = webdriver.Chrome(options=options)
-    driver.set_window_size(950, 800)
+    driver.set_window_size(500, 500)
 
     # driver = webdriver.Chrome()
 
