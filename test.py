@@ -87,7 +87,7 @@ def Selenium():
         print("check3")
         result = res.find_element(By.TAG_NAME, "a")
 
-        result_link = result[1]
+        result_link = result
 
         time.sleep(7)
         result_link.click()
