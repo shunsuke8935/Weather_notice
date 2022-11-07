@@ -41,8 +41,8 @@ def Selenium():
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--remote-debugging-port=9222')
     # driverに設定 ※optionsを指定しないとheadlessにならないので注意
-    driver = webdriver.Chrome(options=options)
-    driver.set_window_size(500, 500)
+    # driver = webdriver.Chrome(options=options)
+    # driver.set_window_size(500, 500)
 
     # driver = webdriver.Chrome()
 
@@ -66,47 +66,63 @@ def Selenium():
 
     try:
         weather_info = weather_info.translate(table)
-        driver = webdriver.Chrome()
+        # driver = webdriver.Chrome()
         print("気温: {temparcher}".format(temparcher=temparcher))
 
-        print("check1")
-        driver.get('https://www.google.com/')
-        time.sleep(7)
-        search_box = driver.find_element(By.NAME, "q")
-        print(search_box)
-        time.sleep(7)
-        search_box.send_keys(temparcher + "度の服装")
-        print("check2")
-        search_box.submit()
-        # search_box.send_keys(Keys.ENTER)
-        time.sleep(7)
-        print("check2.5")
-        # //*[@id="rso"]/div[1]/div/div[1]/div/a
-        res = driver.find_element(
-            By.ID, "rso")
-        print("check3")
-        result = res.find_element(By.TAG_NAME, "a")
+        # 条件分岐
+        if int(temparcher) >= 25:
+            advise_clothe = "半袖が快適に感じられます。"
+        elif int(temparcher) < 25 and int(temparcher) >= 20:
+            advise_clothe = "長袖シャツがおすすめです。"
+        elif int(temparcher) < 20 and int(temparcher) >= 16:
+            advise_clothe = "長袖シャツの上にベストや薄手のカーディガンなど、一枚羽織るものが必要と感じます。"
+        elif int(temparcher) < 16 and int(temparcher) >= 12:
+            advise_clothe = "日向では暖かさを感じるくらい。ふんわりセーターで身軽な服装を。"
+        elif int(temparcher) < 12 and int(temparcher) >= 8:
+            advise_clothe = "風が吹くと体が冷えてしまいそう。風を通さないコートで防寒を。"
+        elif int(temparcher) < 8 and int(temparcher) >= 5:
+            advise_clothe = "「冬」を感じる冷たい空気から、厚手のコートでしっかり体を守ろう。"
+        else:
+            advise_clothe = "手袋や耳あてで肌という肌をしっかりガード。ダウンなど最大級の防寒対策を。"
 
-        result_link = result
+        # print("check1")
+        # driver.get('https://www.google.com/')
+        # time.sleep(7)
+        # search_box = driver.find_element(By.NAME, "q")
+        # print(search_box)
+        # time.sleep(7)
+        # search_box.send_keys(temparcher + "度の服装")
+        # print("check2")
+        # search_box.submit()
+        # # search_box.send_keys(Keys.ENTER)
+        # time.sleep(7)
+        # print("check2.5")
+        # # //*[@id="rso"]/div[1]/div/div[1]/div/a
+        # res = driver.find_element(
+        #     By.ID, "rso")
+        # print("check3")
+        # result = res.find_element(By.TAG_NAME, "a")
 
-        time.sleep(7)
-        result_link.click()
-        time.sleep(7)
-        url = driver.current_url
+        # result_link = result
+
+        # time.sleep(7)
+        # result_link.click()
+        # time.sleep(7)
+        # url = driver.current_url
 
         result_str = """
-        \n明日の天気：{weather_info}\n最高気温：{temparcher}\n最低気温：{temparcher_low}\nお天気ファッション情報：\n{url}
+        \n明日の天気：{weather_info}\n最高気温：{temparcher}\n最低気温：{temparcher_low}\nお天気ファッションアドバイス：\n{advise_clothe}
         """.format(
             weather_info=weather_info,
             temparcher=temparcher,
             temparcher_low=temparcher_low,
-            url=url
+            advise_clothe=advise_clothe
         )
 
         return result_str
     except Exception as e:
         print(e)
-        driver.quit()
+        # driver.quit()
         return "CAN NOT SEARCH ON GOOGLE"
 
     driver.quit()
