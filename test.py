@@ -6,6 +6,7 @@ from selenium.webdriver.chrome import service as fs
 import json
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from const import fashon
 # -*- coding: utf-8 -*-
 
 
@@ -70,20 +71,12 @@ def Selenium():
         print("気温: {temparcher}".format(temparcher=temparcher))
 
         # 条件分岐
-        if int(temparcher) >= 25:
-            advise_clothe = "半袖が快適に感じられます。"
-        elif int(temparcher) < 25 and int(temparcher) >= 20:
-            advise_clothe = "長袖シャツがおすすめです。"
-        elif int(temparcher) < 20 and int(temparcher) >= 16:
-            advise_clothe = "長袖シャツの上にベストや薄手のカーディガンなど、一枚羽織るものが必要と感じます。"
-        elif int(temparcher) < 16 and int(temparcher) >= 12:
-            advise_clothe = "日向では暖かさを感じるくらい。ふんわりセーターで身軽な服装を。"
-        elif int(temparcher) < 12 and int(temparcher) >= 8:
-            advise_clothe = "風が吹くと体が冷えてしまいそう。風を通さないコートで防寒を。"
-        elif int(temparcher) < 8 and int(temparcher) >= 5:
-            advise_clothe = "「冬」を感じる冷たい空気から、厚手のコートでしっかり体を守ろう。"
+        if int(temparcher) > 28:
+            advise_clothe = "真夏です。最大限に涼しい格好にしましょう。"
+        elif int(temparcher) < 8:
+            advise_clothe = "真冬です。最大の防寒対策をしましょう。"
         else:
-            advise_clothe = "手袋や耳あてで肌という肌をしっかりガード。ダウンなど最大級の防寒対策を。"
+            advise_clothe = fashon[int(temparcher)]
 
         # print("check1")
         # driver.get('https://www.google.com/')
